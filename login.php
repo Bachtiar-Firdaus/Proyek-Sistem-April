@@ -4,14 +4,15 @@ if (!isset($_SESSION)) {
   session_start();
 }
 if (isset($_SESSION['MM_Username'])) {
-  header("Location: dashboard.php");
-  exit;
+	header("Location: dashboard.php");
+	exit;
 }
 require_once('Connections/koneksi.php');
 $loginFormAction = $_SERVER['PHP_SELF'];
 if (isset($_GET['accesscheck'])) {
   $_SESSION['PrevUrl'] = $_GET['accesscheck'];
 }
+
 if (isset($_POST['username'])) {
   $loginUsername=$_POST['username'];
   $password=$_POST['password'];
@@ -31,9 +32,10 @@ if (isset($_POST['username'])) {
     
     //declare two session variables and assign them
     $_SESSION['MM_Username'] = $loginUsername;
-    $_SESSION['MM_UserGroup'] = $loginStrGroup;       
+    $_SESSION['MM_UserGroup'] = $loginStrGroup;	      
+
     if (isset($_SESSION['PrevUrl']) && false) {
-      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];  
+      $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];	
     }
     header("Location: " . $MM_redirectLoginSuccess );
   }
